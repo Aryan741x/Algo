@@ -1,43 +1,34 @@
-#include <bits/stdc++.h>
+#include<iostream>
+#include<vector>
 using namespace std;
-long long mode(string s,int i,int j){
-    int a=0;
-    int b=0;
-    for(int k=i;k<=j;++k){
-        if(s[k]=='0'){
-            a++;
-        }
-        else{
-            b++;
-        }
+void revers(vector<int>&v,int i){
+    if(i==v.size()/2)return;
+    v[i]=v[i]^v[v.size()-1-i];
+    v[v.size()-1-i]=v[i]^v[v.size()-1-i];
+    v[i]=v[i]^v[v.size()-1-i];
+    revers(v,i+1);
+}
+bool palindrome(vector<int>&v,int i){
+    if(i==v.size()/2)return true;
+    if(v[i]!=v[v.size()-1-i])return false;
+    return palindrome(v,i+1);
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>vec(n);
+    for(int i=0;i<n;++i){
+        cin>>vec[i];
     }
-    if(a==b){
-        return 2;
+    revers(vec,0);
+    for(int i=0;i<n;++i){
+        cout<<vec[i]<<" ";
+    }
+    cout<<endl;
+    if(palindrome(vec,0)){
+        cout<<"The Given Array is a Palindrome"<<endl;
     }
     else{
-        return 1;
-    }
-}
-int comb(string s){
-    int n=s.size();
-    int k=0;
-    for(int i=0;i<n-1;++i){
-        if(s[i]!=s[i+1]){
-            k++;
-        }
-    }
-    return k;
-}
-int main() {
-	// your code goes here
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        string s;
-        cin>>s;
-        int k=comb(s);
-        cout<<mode(s,0,n-1)+((n*(n+1))/2)+((k*(k-1))/2)<<endl;
+        cout<<"The Given Array is not a Palindrome"<<endl;
     }
 }
