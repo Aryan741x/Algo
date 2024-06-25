@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+//Used when a^b exceeds even long long
 long long mod_exp(long long a,long long b,long long M){
     a%=M;
     long long r=1;
