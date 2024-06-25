@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-void revers(vector<int>&v,int i){
+void reverse(vector<int>&v,int i){
     if(i==v.size()/2)return;
     v[i]=v[i]^v[v.size()-1-i];
     v[v.size()-1-i]=v[i]^v[v.size()-1-i];
@@ -20,7 +20,7 @@ int main(){
     for(int i=0;i<n;++i){
         cin>>vec[i];
     }
-    revers(vec,0);
+    reverse(vec,0);
     for(int i=0;i<n;++i){
         cout<<vec[i]<<" ";
     }
