@@ -5,10 +5,10 @@ public:
         int mid=low+(high-low)/2;
         if(nums[mid]>nums[mid+1] && nums[mid]>nums[mid-1])return mid;
         int l=result(nums,mid+1,high);
+        if(l!=-1)return l;
         int r=result(nums,low,mid-1);
-        if(l==-1&&r==-1)return -1;
-        else if(l==-1)return r;
-        else return l;
+        if(r!=-1)return r;
+        return -1;
     }
     int findPeakElement(vector<int>& nums) {
         int n=nums.size();
